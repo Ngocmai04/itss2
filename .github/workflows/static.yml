@@ -36,7 +36,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Thay đổi dấu '.' thành đường dẫn đến thư mục chứa file index.html của bạn
           path: './solution-interview-mockup'
       - name: Deploy to GitHub Pages
         id: deployment
