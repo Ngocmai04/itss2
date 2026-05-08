@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trọ Xác Thực — Mockup Phỏng vấn Giải pháp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --text: #121826;
+      --muted: #5c6678;
+      --line: #e2e8f0;
+      --surface: #ffffff;
+      --surface-2: #f1f4f9;
+      --verified: #0a6b52;
+      --verified-2: #12a382;
+      --verified-soft: #d4f5ea;
+      --accent: #3949f0;
+      --accent-hover: #2e3bcc;
+      --accent-soft: #e9ecff;
+      --danger: #e11d48;
+      --price: #dc2626;
+      --audit-bg: #eef6ff;
+      --audit-border: #c7dbfa;
+      --audit-title: #1e40af;
+      --radius: 16px;
+      --radius-sm: 11px;
+      --font: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 10px 28px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 16px 48px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      background:
+        radial-gradient(900px 480px at 0% -5%, rgba(57, 73, 240, 0.11), transparent 55%),
+        radial-gradient(700px 420px at 100% 0%, rgba(10, 107, 82, 0.08), transparent 50%),
+        linear-gradient(165deg, #e8edf6 0%, #eef2f8 38%, #f4f6fb 100%);
+      min-height: 100vh;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: clamp(14px, 3.5vw, 28px) clamp(14px, 4vw, 36px) clamp(28px, 5vw, 48px);
+    }
+
+    .app-head {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: clamp(20px, 3.5vw, 32px);
+    }
+
+    @media (min-width: 720px) {
+      .app-head {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+      }
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--accent), var(--verified-2));
+      box-shadow: 0 2px 8px rgba(57, 73, 240, 0.35);
+    }
+
+    .headlines {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .headlines h1 {
+      font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+      font-weight: 800;
+      margin: 0 0 8px;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .headlines p {
+      margin: 0;
+      font-size: clamp(0.875rem, 1.5vw, 0.95rem);
+      color: var(--muted);
+      max-width: 52ch;
+    }
+
+    .list {
+      display: grid;
+      gap: clamp(14px, 2.2vw, 20px);
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 640px) {
+      .list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      overflow: hidden;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(57, 73, 240, 0.18);
+    }
+
+    .card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .card-inner {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .card-thumb {
+      position: relative;
+      height: 180px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .card-thumb > img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      z-index: 0;
+    }
+
+    .card-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.06) 0%, rgba(15, 23, 42, 0.35) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .card-thumb.tone-0,
+    .detail-hero.tone-0 {
+      background: linear-gradient(145deg, #94a3b8 0%, #64748b 45%, #475569 100%);
+    }
+
+    .card-thumb.tone-1,
+    .detail-hero.tone-1 {
+      background: linear-gradient(145deg, #a5b4fc 0%, #818cf8 40%, #4f46e5 100%);
+    }
+
+    .card-thumb.tone-2,
+    .detail-hero.tone-2 {
+      background: linear-gradient(145deg, #7dd3c0 0%, #2dd4bf 35%, #0d9488 100%);
+    }
+
+    .card-body {
+      padding: clamp(14px, 2.5vw, 18px);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: clamp(0.9rem, 1.6vw, 1.02rem);
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+      line-height: 1.35;
+    }
+
+    .card .detail-spec-box {
+      margin-top: auto;
+    }
+
+    .detail-spec-box--card .detail-spec-row {
+      padding: 11px 12px;
+    }
+
+    .detail-spec-box--card .detail-spec-value {
+      font-size: clamp(0.82rem, 2.4vw, 0.92rem);
+    }
+
+    .v-mark {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      margin-top: 1px;
+      border-radius: 50%;
+      background: var(--verified-soft);
+      color: var(--verified);
+      font-size: 0.68rem;
+      font-weight: 800;
+      border: 1px solid rgba(10, 107, 82, 0.2);
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.875rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      padding: 10px 14px;
+      margin: 0 0 16px;
+      border-radius: 999px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+
+    .btn-back:hover {
+      color: var(--text);
+      border-color: rgba(57, 73, 240, 0.25);
+      background: var(--accent-soft);
+    }
+
+    #view-detail {
+      max-width: 100%;
+      margin: 0;
+      padding-bottom: 8px;
+    }
+
+    .detail-page-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: clamp(18px, 3vw, 26px);
+    }
+
+    .detail-head-text {
+      flex: 1;
+      min-width: min(100%, 260px);
+    }
+
+    .detail-page-title {
+      font-size: clamp(1.2rem, 3.2vw, 1.85rem);
+      font-weight: 800;
+      margin: 0 0 10px;
+      letter-spacing: -0.03em;
+      line-height: 1.22;
+      color: var(--text);
+    }
+
+    .detail-page-location {
+      margin: 0;
+      font-size: 0.9375rem;
+      color: var(--muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: 1.45;
+      max-width: 65ch;
+    }
+
+    .detail-page-location::before {
+      content: "📍";
+      flex-shrink: 0;
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .detail-verified-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #059669, var(--verified));
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.32);
+      white-space: nowrap;
+    }
+
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(22px, 4vw, 36px);
+      align-items: start;
+    }
+
+    @media (min-width: 960px) {
+      .detail-layout {
+        grid-template-columns: 1fr min(340px, 36%);
+      }
+    }
+
+    .detail-main {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(18px, 3vw, 24px);
+    }
+
+    .detail-aside {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    @media (min-width: 960px) {
+      .detail-aside {
+        position: sticky;
+        top: 14px;
+      }
+    }
+
+    .detail-hero {
+      height: clamp(220px, 48vw, 440px);
+      border-radius: var(--radius);
+      margin-bottom: 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .detail-hero.has-photo {
+      background: #1e293b;
+    }
+
+    .detail-hero > img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      z-index: 0;
+    }
+
+    .detail-hero::after {
+      content: "Ảnh thực tế đã đối chiếu";
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(15, 23, 42, 0.55);
+      padding: 6px 10px;
+      border-radius: 8px;
+      backdrop-filter: blur(6px);
+      z-index: 1;
+    }
+
+    .audit-box {
+      background: var(--audit-bg);
+      border: 1px solid var(--audit-border);
+      border-radius: var(--radius);
+      padding: clamp(16px, 3vw, 20px);
+    }
+
+    .audit-box-title {
+      margin: 0 0 14px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--audit-title);
+      letter-spacing: -0.02em;
+    }
+
+    .audit-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .audit-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      color: #1e3a5f;
+    }
+
+    .audit-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #dbeafe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+    }
+
+    .detail-block-title {
+      margin: 0 0 10px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .detail-block-text {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .amenity-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    @media (min-width: 520px) {
+      .amenity-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .amenity-cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .amenity-ico {
+      font-size: 1.15rem;
+      line-height: 1;
+    }
+
+    .price-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 18px 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .price-amount {
+      margin: 0;
+      font-size: clamp(1.5rem, 3.5vw, 1.85rem);
+      font-weight: 800;
+      color: var(--price);
+      letter-spacing: -0.02em;
+    }
+
+    .price-sub {
+      margin: 6px 0 0;
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .spec-dl {
+      margin: 16px 0 0;
+      padding: 0;
+    }
+
+    .spec-dl-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding: 12px 0;
+      border-top: 1px dashed var(--line);
+      font-size: 0.875rem;
+    }
+
+    .spec-dl-row dt {
+      margin: 0;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .spec-dl-row dd {
+      margin: 0;
+      font-weight: 700;
+      color: var(--text);
+      text-align: right;
+    }
+
+    .spec-status {
+      color: var(--verified) !important;
+    }
+
+    .host-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+
+    .host-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #a5b4fc, #6366f1);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .host-name {
+      margin: 0 0 4px;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .host-sub {
+      margin: 0;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .aside-cta {
+      width: 100%;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition:
+        transform 0.12s ease,
+        box-shadow 0.15s ease,
+        filter 0.15s ease;
+    }
+
+    .aside-cta:active {
+      transform: scale(0.99);
+    }
+
+    .aside-cta-hint {
+      font-size: 0.72rem;
+      font-weight: 600;
+      opacity: 0.85;
+    }
+
+    .aside-cta--primary {
+      background: linear-gradient(135deg, var(--accent) 0%, #5c6cfc 100%);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(57, 73, 240, 0.35);
+    }
+
+    .aside-cta--primary:hover {
+      filter: brightness(1.05);
+    }
+
+    .aside-cta--outline {
+      background: var(--surface);
+      color: var(--accent);
+      border: 2px solid rgba(57, 73, 240, 0.35);
+    }
+
+    .aside-cta--outline:hover {
+      background: var(--accent-soft);
+    }
+
+    .aside-cta--video {
+      background: linear-gradient(135deg, #059669, var(--verified));
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+    }
+
+    .aside-cta--video:hover {
+      filter: brightness(1.05);
+    }
+
+    .aside-cta--ghost {
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .aside-cta--ghost:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .aside-demo-hint {
+      margin: 0;
+      min-height: 1.25em;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .detail-spec-box {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      padding: 4px 4px;
+      overflow: hidden;
+    }
+
+    .detail-spec-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .detail-spec-row:last-child {
+      border-bottom: none;
+    }
+
+    .detail-spec-copy {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .detail-spec-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+
+    .detail-spec-value {
+      font-weight: 800;
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
+      line-height: 1.35;
+      word-break: break-word;
+      color: var(--text);
+    }
+
+    .detail-spec-row .v-mark {
+      margin-top: 2px;
+    }
+
+    .v-mark--solid {
+      background: linear-gradient(145deg, var(--verified-2) 0%, var(--verified) 100%);
+      color: #fff;
+      border: none;
+      font-size: 0.62rem;
+      box-shadow: 0 2px 6px rgba(10, 107, 82, 0.25);
+    }
+
+    .cta-primary {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 15px 18px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent) 0%, #5c6cfc 50%, var(--accent-hover) 100%);
+      box-shadow: 0 4px 16px rgba(57, 73, 240, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: transform 0.12s ease, filter 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .cta-primary:hover {
+      filter: brightness(1.05);
+      box-shadow: 0 6px 22px rgba(57, 73, 240, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .cta-primary:active {
+      transform: scale(0.99);
+    }
+
+    .cta-secondary {
+      width: 100%;
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      background: var(--surface);
+      color: var(--text);
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .cta-secondary:hover {
+      background: var(--surface-2);
+      border-color: rgba(57, 73, 240, 0.2);
+    }
+
+    .cta-secondary:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    /* Filter bar */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: clamp(18px, 3vw, 26px);
+      padding: clamp(14px, 2.5vw, 20px);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 1px 4px rgba(15,23,42,0.06);
+      align-items: flex-end;
+    }
+    .filter-group {
+      flex: 1 1 200px;
+      min-width: 160px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .filter-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+    .filter-range-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .filter-range-wrap input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--line) 0%);
+      outline: none;
+      cursor: pointer;
+    }
+    .filter-range-wrap input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid #fff;
+      box-shadow: 0 2px 8px rgba(57,73,240,0.35);
+      cursor: pointer;
+      transition: transform .15s;
+    }
+    .filter-range-wrap input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+    .filter-range-wrap input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid #fff;
+      box-shadow: 0 2px 8px rgba(57,73,240,0.35);
+      cursor: pointer;
+    }
+    .filter-value {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .filter-select {
+      padding: 10px 12px;
+      border: 1.5px solid var(--line);
+      border-radius: var(--radius-sm);
+      font-family: var(--font);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      background: var(--surface-2);
+      cursor: pointer;
+      transition: border-color .2s;
+      -webkit-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235c6678' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+    }
+    .filter-select:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+      border-color: var(--accent);
+    }
+    .filter-reset {
+      padding: 10px 16px;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-2);
+      font-family: var(--font);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background .15s, color .15s, border-color .15s;
+      white-space: nowrap;
+      align-self: flex-end;
+    }
+    .filter-reset:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-color: rgba(57,73,240,0.25);
+    }
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 100;
+      padding: 16px;
+      padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
+      animation: fadeIn 0.2s ease;
+    }
+
+    @media (min-width: 520px) {
+      .modal-overlay {
+        align-items: center;
+        padding: 24px;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .modal {
+      background: var(--surface);
+      width: 100%;
+      max-width: min(440px, 100%);
+      border-radius: 20px 20px 0 0;
+      padding: clamp(20px, 4vw, 26px);
+      box-shadow: var(--shadow-lg);
+      animation: slideUp 0.25s ease;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+    }
+
+    @media (min-width: 520px) {
+      .modal {
+        border-radius: 20px;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(16px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal h3 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+    }
+
+    .modal > p.sub {
+      margin: 0 0 12px;
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .slot-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    @media (min-width: 420px) {
+      .slot-list {
+        gap: 14px;
+      }
+    }
+
+    .slot {
+      display: block;
+      cursor: pointer;
+      position: relative;
+      border-radius: 14px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .slot input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .slot-inner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 56px;
+      padding: 14px 16px;
+      border: 2px solid var(--line);
+      border-radius: 14px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.15s ease;
+    }
+
+    @media (min-width: 420px) {
+      .slot-inner {
+        min-height: 60px;
+        padding: 16px 18px;
+        gap: 16px;
+      }
+    }
+
+    .slot:hover .slot-inner {
+      border-color: rgba(57, 73, 240, 0.35);
+      box-shadow: 0 4px 14px rgba(57, 73, 240, 0.08);
+    }
+
+    .slot:focus-within .slot-inner {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .slot input:checked + .slot-inner {
+      border-color: var(--accent);
+      background: linear-gradient(180deg, #f5f7ff 0%, var(--accent-soft) 100%);
+      box-shadow:
+        0 0 0 1px rgba(57, 73, 240, 0.12),
+        0 6px 20px rgba(57, 73, 240, 0.12);
+    }
+
+    .slot:active .slot-inner {
+      transform: scale(0.99);
+    }
+
+    .slot-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+    }
+
+    .slot input:checked + .slot-inner .slot-icon {
+      background: #fff;
+      border-color: rgba(57, 73, 240, 0.25);
+      box-shadow: 0 2px 8px rgba(57, 73, 240, 0.12);
+    }
+
+    .slot-text {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: left;
+    }
+
+    .slot-day {
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .slot-time {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .slot-pick {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--line);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+
+    .slot input:checked + .slot-inner .slot-pick {
+      border-color: var(--accent);
+      background: var(--accent);
+      transform: scale(1.05);
+    }
+
+    .slot-pick::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+      opacity: 0;
+      transform: scale(0);
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .slot input:checked + .slot-inner .slot-pick::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .btn-ghost {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.875rem;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .success-banner {
+      background: var(--verified-soft);
+      border: 1px solid rgba(13, 122, 95, 0.25);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.875rem;
+      color: var(--verified);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    /* Video call mock */
+    .call-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: #0f172a;
+      display: flex;
+      flex-direction: column;
+      color: #e2e8f0;
+    }
+
+    .call-top {
+      padding: 12px 16px;
+      padding-top: max(12px, env(safe-area-inset-top, 0px));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 0.8rem;
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    #call-room-label {
+      max-width: 100%;
+      text-align: right;
+      opacity: 0.85;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card,
+      .cta-primary,
+      .modal-overlay,
+      .modal {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .card:hover {
+        transform: none;
+      }
+    }
+
+    .call-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 12px;
+      min-height: 0;
+    }
+
+    .pip-remote {
+      flex: 1;
+      border-radius: 12px;
+      background: linear-gradient(160deg, #1e3a5f 0%, #0f172a 60%, #312e81 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pip-remote::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.08), transparent 50%);
+    }
+
+    .avatar-host {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      z-index: 1;
+    }
+
+    .pip-local {
+      align-self: flex-end;
+      width: clamp(100px, 28vw, 132px);
+      height: clamp(128px, 36vw, 172px);
+      border-radius: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.28);
+      background: linear-gradient(200deg, #475569, #1e293b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8px;
+      font-size: clamp(0.62rem, 2.2vw, 0.72rem);
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.78);
+      margin-bottom: max(8px, env(safe-area-inset-bottom, 0px));
+    }
+
+    .call-label {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      text-align: center;
+      font-size: 0.75rem;
+      opacity: 0.85;
+    }
+
+    .call-bottom {
+      padding: 20px 24px max(28px, env(safe-area-inset-bottom, 12px));
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    .call-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .call-btn.mic {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    .call-btn.end {
+      background: var(--danger);
+      color: #fff;
+    }
+
+    .hint-bar {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: clamp(20px, 4vw, 28px);
+      padding: 14px 16px;
+      max-width: 52rem;
+      margin-left: auto;
+      margin-right: auto;
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      line-height: 1.45;
+    }
+
+    .modal-error {
+      font-size: 0.8125rem;
+      color: var(--danger);
+      margin: 0 0 12px;
+      min-height: 1.35em;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <!-- Luồng 1: Danh sách -->
+    <section id="view-list" aria-label="Danh sách phòng đã xác thực">
+      <header class="app-head">
+        <div class="headlines">
+          <h1>Phòng trọ đã xác thực</h1>
+          <p>Chỉ hiển thị tin đối chiếu thực tế — không đăng nhập.</p>
+        </div>
+        <span class="brand-mark">Trọ Xác Thực</span>
+      </header>
+
+      <div class="filter-bar" id="filter-bar">
+        <div class="filter-group">
+          <span class="filter-label">💰 Giá tối đa</span>
+          <div class="filter-range-wrap">
+            <input type="range" id="filter-price" min="500000" max="5000000" step="500000" value="5000000" />
+            <span class="filter-value" id="filter-price-value">5.000.000 đ</span>
+          </div>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">📐 Diện tích</span>
+          <select class="filter-select" id="filter-area">
+            <option value="all">Tất cả</option>
+            <option value="0-20">Dưới 20 m²</option>
+            <option value="20-30">20 – 30 m²</option>
+            <option value="30+">Trên 30 m²</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">📍 Vị trí (Quận)</span>
+          <select class="filter-select" id="filter-location">
+            <option value="all">Tất cả</option>
+            <option value="Hai Bà Trưng">Hai Bà Trưng</option>
+            <option value="Thanh Xuân">Thanh Xuân</option>
+            <option value="Cầu Giấy">Cầu Giấy</option>
+          </select>
+        </div>
+        <button type="button" class="filter-reset" id="filter-reset">↺ Đặt lại</button>
+      </div>
+
+      <div class="list" id="listing-cards"></div>
+      <p class="hint-bar">Mockup tĩnh cho Solution Interview — click một phòng để xem bằng chứng xác minh.</p>
+    </section>
+
+    <!-- Luồng 1: Chi tiết + Luồng 2: CTA video -->
+    <section id="view-detail" class="hidden" aria-label="Chi tiết phòng trọ">
+      <button type="button" class="btn-back" id="btn-back-list">← Quay lại danh sách</button>
+
+      <header class="detail-page-head">
+        <div class="detail-head-text">
+          <h2 class="detail-page-title" id="detail-title"></h2>
+          <p class="detail-page-location" id="detail-location"></p>
+        </div>
+        <span class="detail-verified-chip">✓ Đã xác thực 100%</span>
+      </header>
+
+      <div class="detail-layout">
+        <div class="detail-main">
+          <div class="detail-hero" id="detail-hero" aria-hidden="true"></div>
+
+          <section class="audit-box" aria-labelledby="audit-heading">
+            <h3 class="audit-box-title" id="audit-heading">Thông tin đã được hệ thống kiểm duyệt</h3>
+            <ul class="audit-list" id="detail-audit-list"></ul>
+          </section>
+
+          <section class="detail-block" aria-labelledby="desc-heading">
+            <h3 class="detail-block-title" id="desc-heading">Mô tả chi tiết</h3>
+            <p class="detail-block-text" id="detail-description"></p>
+          </section>
+
+          <section class="detail-block" aria-labelledby="amen-heading">
+            <h3 class="detail-block-title" id="amen-heading">Tiện ích có sẵn</h3>
+            <div class="amenity-grid" id="detail-amenities"></div>
+          </section>
+        </div>
+
+        <aside class="detail-aside" aria-label="Giá và liên hệ">
+          <div class="price-card">
+            <p class="price-amount" id="detail-price-display"></p>
+            <p class="price-sub">Chưa bao gồm điện, nước, phí rác (minh họa)</p>
+            <dl class="spec-dl">
+              <div class="spec-dl-row">
+                <dt>Diện tích</dt>
+                <dd id="detail-side-area"></dd>
+              </div>
+              <div class="spec-dl-row">
+                <dt>Tiền cọc</dt>
+                <dd id="detail-side-deposit"></dd>
+              </div>
+              <div class="spec-dl-row">
+                <dt>Tình trạng</dt>
+                <dd id="detail-side-status" class="spec-status"></dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="host-card">
+            <div class="host-avatar" id="detail-host-avatar" aria-hidden="true"></div>
+            <div>
+              <p class="host-name" id="detail-host-name"></p>
+              <p class="host-sub" id="detail-host-sub"></p>
+            </div>
+          </div>
+
+          <button type="button" class="aside-cta aside-cta--primary" id="btn-mock-phone">
+            Liên hệ chủ nhà <span class="aside-cta-hint">(mô phỏng)</span>
+          </button>
+          <button type="button" class="aside-cta aside-cta--outline" id="btn-mock-visit">
+            Đặt lịch xem phòng <span class="aside-cta-hint">(mô phỏng)</span>
+          </button>
+          <button type="button" class="aside-cta aside-cta--video" id="btn-open-schedule">
+            Gọi Video xem phòng thực tế
+          </button>
+          <button type="button" class="aside-cta aside-cta--ghost hidden" id="btn-start-call" disabled>
+            Bắt đầu Gọi Video ngay (Mô phỏng)
+          </button>
+          <p class="aside-demo-hint" id="aside-demo-hint" role="status" aria-live="polite"></p>
+        </aside>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal đặt lịch -->
+  <div class="modal-overlay hidden" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal" id="modal-panel">
+      <h3 id="modal-title">Chọn khung giờ gọi video</h3>
+      <p class="sub" id="modal-sub">Chủ nhà đã mở lịch rảnh — chọn một mốc để xác nhận.</p>
+      <p class="modal-error" id="modal-slot-error" aria-live="polite"></p>
+
+      <div id="modal-step-pick">
+        <div class="slot-list" role="radiogroup" aria-labelledby="modal-title">
+          <label class="slot" data-slot-label="Thứ 3 — 18:00 – 18:30">
+            <input type="radio" name="slot" value="0" />
+            <span class="slot-inner">
+              <span class="slot-icon" aria-hidden="true">🕐</span>
+              <span class="slot-text">
+                <span class="slot-day">Thứ 3</span>
+                <span class="slot-time">18:00 – 18:30</span>
+              </span>
+              <span class="slot-pick" aria-hidden="true"></span>
+            </span>
+          </label>
+          <label class="slot" data-slot-label="Thứ 5 — 12:00 – 12:20">
+            <input type="radio" name="slot" value="1" />
+            <span class="slot-inner">
+              <span class="slot-icon" aria-hidden="true">🕐</span>
+              <span class="slot-text">
+                <span class="slot-day">Thứ 5</span>
+                <span class="slot-time">12:00 – 12:20</span>
+              </span>
+              <span class="slot-pick" aria-hidden="true"></span>
+            </span>
+          </label>
+          <label class="slot" data-slot-label="Thứ 7 — 09:00 – 09:30">
+            <input type="radio" name="slot" value="2" />
+            <span class="slot-inner">
+              <span class="slot-icon" aria-hidden="true">🕐</span>
+              <span class="slot-text">
+                <span class="slot-day">Thứ 7</span>
+                <span class="slot-time">09:00 – 09:30</span>
+              </span>
+              <span class="slot-pick" aria-hidden="true"></span>
+            </span>
+          </label>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="cta-primary" id="btn-confirm-slot">Xác nhận đặt lịch</button>
+          <button type="button" class="btn-ghost" id="btn-close-modal">Hủy</button>
+        </div>
+      </div>
+
+      <div id="modal-step-done" class="hidden">
+        <div class="success-banner" id="success-text"></div>
+        <p class="sub" style="margin-bottom: 14px">Bạn có thể mô phỏng cuộc gọi ngay để trải nghiệm luồng “xem phòng từ xa”.</p>
+        <div class="modal-actions">
+          <button type="button" class="cta-primary" id="btn-modal-start-call">Bắt đầu Gọi Video ngay (Mô phỏng)</button>
+          <button type="button" class="btn-ghost" id="btn-close-after-book">Đóng</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Màn hình gọi video giả lập -->
+  <div class="call-screen hidden" id="view-call" aria-label="Cuộc gọi video mô phỏng">
+    <div class="call-top">
+      <span id="call-status">Đang kết nối…</span>
+      <span id="call-room-label"></span>
+    </div>
+    <div class="call-main">
+      <div class="pip-remote">
+        <div class="avatar-host" id="call-host-initial">C</div>
+        <div class="call-label">Chủ nhà — camera phòng (mô phỏng)</div>
+      </div>
+      <div class="pip-local">Bạn (sinh viên)</div>
+    </div>
+    <div class="call-bottom">
+      <button type="button" class="call-btn mic" title="Mic (mô phỏng)">🎤</button>
+      <button type="button" class="call-btn end" id="btn-end-call" title="Kết thúc">📞</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var listings = [
+        {
+          id: "a1",
+          tone: 0,
+          photo:
+            "https://cdn.diemnhangroup.com/noithatdiemnhan/2023/06/thiet-ke-phong-tro-20m2-21.jpg",
+          title: "Phòng đơn có gác — gần ĐH Bách Khoa",
+          price: "2.800.000 đ/tháng",
+          location: "Ngõ 45, Bách Khoa — Q. Hai Bà Trưng (cách trường ~900m)",
+          area: "18 m²",
+          deposit: "1 tháng",
+          status: "Còn trống (vào ở ngay)",
+          description:
+            "Phòng khép kín, có gác ngủ rộng, ánh sáng tự nhiên. Khu yên tĩnh, camera ngõ. Phù hợp sinh viên cần không gian học tập ổn định. Giờ giấc linh hoạt, chủ nhà hỗ trợ xem phòng qua video theo lịch mở.",
+          hostName: "Chị Lan (chủ nhà)",
+          hostSub: "Tham gia 2023 · Phản hồi rất nhanh",
+          amenities: [
+            { icon: "❄️", label: "Điều hòa" },
+            { icon: "🚿", label: "Nóng lạnh" },
+            { icon: "📶", label: "Wifi" },
+            { icon: "🛏", label: "Gác rộng" },
+            { icon: "🔒", label: "Khóa cửa riêng" },
+            { icon: "🍳", label: "Bếp từ" },
+          ],
+          evidence: [
+            "Ảnh minh họa đã đối chiếu với video quay tại phòng (04/05/2026).",
+            "Sổ địa chỉ & CCCD chủ nhà đã lưu hồ sơ xác minh nội bộ.",
+            "Giá niêm yết khớp hợp đồng mẫu đã quét.",
+          ],
+          hostInitial: "L",
+          priceNum: 2800000,
+          areaNum: 18,
+          district: "Hai Bà Trưng",
+        },
+        {
+          id: "b2",
+          tone: 1,
+          photo: "https://kimcuongdecor.vn/wp-content/uploads/2022/09/thiet-ke-phong-ngu-co-ban-cong-phong-cach-hien-dai.jpg",
+          title: "Studio ban công — khu an ninh có camera",
+          price: "3.500.000 đ/tháng",
+          location: "Ngõ 118 — Đường Khương Trung, Q. Thanh Xuân",
+          area: "25 m²",
+          deposit: "1 tháng",
+          status: "Còn trống (vào ở ngay)",
+          description:
+            "Studio khép kín, ban công phơi đồ, nội thất cơ bản hiện đại. Tòa có camera hành lang, thẻ từ ra vào. Khu dân trí, thuận tiện di chuyển. Có thể xem phòng thực tế qua video trực tiếp với chủ nhà.",
+          hostName: "Anh Hùng (chủ nhà)",
+          hostSub: "Tham gia 2022 · Phản hồi trong ngày",
+          amenities: [
+            { icon: "🪟", label: "Ban công" },
+            { icon: "❄️", label: "Điều hòa" },
+            { icon: "🚿", label: "Nóng lạnh" },
+            { icon: "📶", label: "Wifi" },
+            { icon: "📹", label: "Camera khu" },
+            { icon: "🍳", label: "Bếp từ" },
+          ],
+          evidence: [
+            "Video walkthrough 2 phút do nền tảng lưu trữ (không chỉnh sửa cắt ghép).",
+            "Đồng hồ điện & mã phòng khớp ảnh đăng tin.",
+            "Chủ nhà xác nhận lịch gọi video trong khung giờ mở.",
+          ],
+          hostInitial: "H",
+          priceNum: 3500000,
+          areaNum: 25,
+          district: "Thanh Xuân",
+        },
+        {
+          id: "c3",
+          tone: 2,
+          photo: "https://pt123.cdn.static123.com/images/thumbs/900x600/fit/2023/10/31/086ad599-6ee8-4cc5-8f57-ce7736030e8e_1698714516.jpg",
+          title: "Ở ghép 2 người — WC riêng trong phòng",
+          price: "1.900.000 đ/người",
+          location: "Hoàng Quốc Việt — Q. Cầu Giấy (gần ĐHQG)",
+          area: "24 m² (chung)",
+          deposit: "1 tháng",
+          status: "Còn 1 chỗ (nam/nữ)",
+          description:
+            "Phòng chung tối đa 2 người, WC khép kín trong phòng, tủ quần áo riêng. Hợp đồng minh bạch, chia sẻ không gian chung rõ ràng. Hỗ trợ xem phòng qua video để đối chiếu thực tế trước khi chốt.",
+          hostName: "Chú Tuấn (chủ nhà)",
+          hostSub: "Tham gia 2024 · Phản hồi nhanh",
+          amenities: [
+            { icon: "🚿", label: "WC trong phòng" },
+            { icon: "📶", label: "Wifi" },
+            { icon: "🛏", label: "Giường + tủ" },
+            { icon: "🍳", label: "Bếp chung" },
+            { icon: "🧺", label: "Máy giặt" },
+            { icon: "🔐", label: "Vân tay" },
+          ],
+          evidence: [
+            "Hình chụp mặt tiền nhà trùng Google Street View (tháng gần nhất).",
+            "Giấy tờ phòng (hợp đồng thuê mẫu) đã đối chiếu mã phòng.",
+            "Mức giá đã khớp biên lai cọc mẫu (ẩn thông tin nhạy cảm).",
+          ],
+          hostInitial: "T",
+          priceNum: 1900000,
+          areaNum: 24,
+          district: "Cầu Giấy",
+        },
+      ];
+
+      var currentId = null;
+      var scheduled = false;
+
+      var elList = document.getElementById("view-list");
+      var elDetail = document.getElementById("view-detail");
+      var elCards = document.getElementById("listing-cards");
+      var elTitle = document.getElementById("detail-title");
+      var elLocation = document.getElementById("detail-location");
+      var elAuditList = document.getElementById("detail-audit-list");
+      var elDescription = document.getElementById("detail-description");
+      var elAmenities = document.getElementById("detail-amenities");
+      var elPriceDisplay = document.getElementById("detail-price-display");
+      var elSideArea = document.getElementById("detail-side-area");
+      var elSideDeposit = document.getElementById("detail-side-deposit");
+      var elSideStatus = document.getElementById("detail-side-status");
+      var elHostAvatar = document.getElementById("detail-host-avatar");
+      var elHostName = document.getElementById("detail-host-name");
+      var elHostSub = document.getElementById("detail-host-sub");
+      var elAsideHint = document.getElementById("aside-demo-hint");
+      var elBtnMockPhone = document.getElementById("btn-mock-phone");
+      var elBtnMockVisit = document.getElementById("btn-mock-visit");
+      var elBtnBack = document.getElementById("btn-back-list");
+      var elBtnSchedule = document.getElementById("btn-open-schedule");
+      var elBtnStartInline = document.getElementById("btn-start-call");
+      var elModal = document.getElementById("modal-overlay");
+      var elStepPick = document.getElementById("modal-step-pick");
+      var elStepDone = document.getElementById("modal-step-done");
+      var elSuccess = document.getElementById("success-text");
+      var elBtnConfirm = document.getElementById("btn-confirm-slot");
+      var elBtnCloseModal = document.getElementById("btn-close-modal");
+      var elBtnCloseAfter = document.getElementById("btn-close-after-book");
+      var elBtnModalStart = document.getElementById("btn-modal-start-call");
+      var elViewCall = document.getElementById("view-call");
+      var elCallStatus = document.getElementById("call-status");
+      var elCallRoom = document.getElementById("call-room-label");
+      var elHostInitial = document.getElementById("call-host-initial");
+      var elBtnEndCall = document.getElementById("btn-end-call");
+      var elSlotError = document.getElementById("modal-slot-error");
+      var elDetailHero = document.getElementById("detail-hero");
+
+      var DEFAULT_AMENITIES = [
+        { icon: "❄️", label: "Điều hòa" },
+        { icon: "🚿", label: "Nóng lạnh" },
+        { icon: "📶", label: "Wifi" },
+        { icon: "🍳", label: "Bếp" },
+        { icon: "🧺", label: "Máy giặt" },
+        { icon: "🔐", label: "An ninh" },
+      ];
+
+      function buildAuditLines(L) {
+        var lines = L.evidence.slice(0, 3);
+        lines.push(
+          "Chủ nhà đã xác minh danh tính — có thể đối chiếu trực tiếp khi gọi video."
+        );
+        return lines;
+      }
+
+      function thumbImgHtml(L) {
+        if (!L.photo) return "";
+        return (
+          '<img src="' +
+          escapeHtml(L.photo) +
+          '" alt="" loading="lazy" decoding="async" />'
+        );
+      }
+
+      /* --- Filter logic --- */
+      var elFilterPrice = document.getElementById("filter-price");
+      var elFilterPriceVal = document.getElementById("filter-price-value");
+      var elFilterArea = document.getElementById("filter-area");
+      var elFilterLocation = document.getElementById("filter-location");
+      var elFilterReset = document.getElementById("filter-reset");
+
+      function formatVND(n) {
+        return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " đ";
+      }
+
+      function updatePriceTrack() {
+        var min = +elFilterPrice.min;
+        var max = +elFilterPrice.max;
+        var val = +elFilterPrice.value;
+        var pct = ((val - min) / (max - min)) * 100;
+        elFilterPrice.style.background = "linear-gradient(90deg, var(--accent) " + pct + "%, var(--line) " + pct + "%)";
+        elFilterPriceVal.textContent = formatVND(val);
+      }
+
+      function getFilteredListings() {
+        var maxPrice = +elFilterPrice.value;
+        var areaVal = elFilterArea.value;
+        var locVal = elFilterLocation.value;
+        return listings.filter(function (L) {
+          if (L.priceNum > maxPrice) return false;
+          if (areaVal !== "all") {
+            if (areaVal === "0-20" && L.areaNum >= 20) return false;
+            if (areaVal === "20-30" && (L.areaNum < 20 || L.areaNum > 30)) return false;
+            if (areaVal === "30+" && L.areaNum <= 30) return false;
+          }
+          if (locVal !== "all" && L.district !== locVal) return false;
+          return true;
+        });
+      }
+
+      function renderList() {
+        elCards.innerHTML = "";
+        var filtered = getFilteredListings();
+        if (filtered.length === 0) {
+          elCards.innerHTML = '<div class="no-results">Không tìm thấy phòng phù hợp. Hãy thử thay đổi bộ lọc.</div>';
+          return;
+        }
+        filtered.forEach(function (L, index) {
+          var tone = typeof L.tone === "number" ? L.tone : index % 3;
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "card";
+          btn.setAttribute("data-id", L.id);
+          btn.innerHTML =
+            '<div class="card-inner">' +
+            '<div class="card-thumb tone-' +
+            tone +
+            '" aria-hidden="true">' +
+            thumbImgHtml(L) +
+            "</div>" +
+            '<div class="card-body">' +
+            '<p class="card-title">' +
+            escapeHtml(L.title) +
+            "</p>" +
+            '<div class="detail-spec-box detail-spec-box--card">' +
+            '<div class="detail-spec-row">' +
+            '<div class="detail-spec-copy"><span class="detail-spec-label">Giá</span><span class="detail-spec-value">' +
+            escapeHtml(L.price) +
+            '</span></div><span class="v-mark v-mark--solid" title="Đã đối chiếu">✓</span></div>' +
+            '<div class="detail-spec-row">' +
+            '<div class="detail-spec-copy"><span class="detail-spec-label">Vị trí</span><span class="detail-spec-value">' +
+            escapeHtml(L.location) +
+            '</span></div><span class="v-mark v-mark--solid" title="Đã đối chiếu">✓</span></div>' +
+            '<div class="detail-spec-row">' +
+            '<div class="detail-spec-copy"><span class="detail-spec-label">Diện tích</span><span class="detail-spec-value">' +
+            escapeHtml(L.area) +
+            '</span></div><span class="v-mark v-mark--solid" title="Đã đối chiếu">✓</span></div></div></div></div>';
+          btn.addEventListener("click", function () {
+            openDetail(L.id);
+          });
+          elCards.appendChild(btn);
+        });
+      }
+
+      elFilterPrice.addEventListener("input", function () {
+        updatePriceTrack();
+        renderList();
+      });
+      elFilterArea.addEventListener("change", renderList);
+      elFilterLocation.addEventListener("change", renderList);
+      elFilterReset.addEventListener("click", function () {
+        elFilterPrice.value = elFilterPrice.max;
+        elFilterArea.value = "all";
+        elFilterLocation.value = "all";
+        updatePriceTrack();
+        renderList();
+      });
+
+      function escapeHtml(t) {
+        var d = document.createElement("div");
+        d.textContent = t;
+        return d.innerHTML;
+      }
+
+      function getListing(id) {
+        for (var i = 0; i < listings.length; i++) {
+          if (listings[i].id === id) return listings[i];
+        }
+        return null;
+      }
+
+      function openDetail(id) {
+        var L = getListing(id);
+        if (!L) return;
+        currentId = id;
+        scheduled = false;
+        elList.classList.add("hidden");
+        elDetail.classList.remove("hidden");
+        var tone = typeof L.tone === "number" ? L.tone : 0;
+        if (elDetailHero) {
+          if (L.photo) {
+            elDetailHero.className = "detail-hero has-photo";
+            elDetailHero.innerHTML =
+              '<img src="' +
+              escapeHtml(L.photo) +
+              '" alt="' +
+              escapeHtml(L.title) +
+              '" loading="lazy" decoding="async" />';
+          } else {
+            elDetailHero.innerHTML = "";
+            elDetailHero.className = "detail-hero tone-" + tone;
+          }
+        }
+        elTitle.textContent = L.title;
+        elLocation.textContent = L.location;
+        if (elAsideHint) elAsideHint.textContent = "";
+
+        elAuditList.innerHTML = "";
+        buildAuditLines(L).forEach(function (line) {
+          var li = document.createElement("li");
+          li.className = "audit-item";
+          li.innerHTML =
+            '<span class="audit-icon" aria-hidden="true">🛡</span><span>' +
+            escapeHtml(line) +
+            "</span>";
+          elAuditList.appendChild(li);
+        });
+
+        elDescription.textContent =
+          L.description ||
+          "Thông tin mô tả đang được cập nhật — vui lòng xem bằng chứng kiểm duyệt và đặt lịch gọi video.";
+
+        elAmenities.innerHTML = "";
+        (L.amenities || DEFAULT_AMENITIES).forEach(function (a) {
+          var cell = document.createElement("div");
+          cell.className = "amenity-cell";
+          cell.innerHTML =
+            '<span class="amenity-ico" aria-hidden="true">' +
+            a.icon +
+            "</span><span>" +
+            escapeHtml(a.label) +
+            "</span>";
+          elAmenities.appendChild(cell);
+        });
+
+        elPriceDisplay.textContent = L.price;
+        elSideArea.textContent = L.area;
+        elSideDeposit.textContent = L.deposit || "1 tháng";
+        elSideStatus.textContent = L.status || "Còn trống (vào ở ngay)";
+        elHostAvatar.textContent = L.hostInitial || "?";
+        elHostName.textContent = L.hostName || "Chủ nhà";
+        elHostSub.textContent =
+          L.hostSub || "Tham gia 2023 · Phản hồi rất nhanh";
+        elBtnStartInline.classList.add("hidden");
+        elBtnStartInline.disabled = true;
+        resetModalUi();
+        window.scrollTo(0, 0);
+      }
+
+      function backToList() {
+        elDetail.classList.add("hidden");
+        elList.classList.remove("hidden");
+        currentId = null;
+        if (elAsideHint) elAsideHint.textContent = "";
+        window.scrollTo(0, 0);
+      }
+
+      function resetModalUi() {
+        elModal.classList.add("hidden");
+        elStepPick.classList.remove("hidden");
+        elStepDone.classList.add("hidden");
+        var radios = document.querySelectorAll('input[name="slot"]');
+        for (var i = 0; i < radios.length; i++) radios[i].checked = false;
+        if (elSlotError) elSlotError.textContent = "";
+      }
+
+      function openModal() {
+        if (!currentId) return;
+        resetModalUi();
+        elModal.classList.remove("hidden");
+        elStepPick.classList.remove("hidden");
+        elStepDone.classList.add("hidden");
+        var firstSlot = document.querySelector('input[name="slot"]');
+        if (firstSlot) firstSlot.focus();
+      }
+
+      function closeModal() {
+        elModal.classList.add("hidden");
+      }
+
+      function selectedSlotLabel() {
+        var r = document.querySelector('input[name="slot"]:checked');
+        if (!r) return null;
+        var lab = r.closest("label");
+        if (!lab) return null;
+        var fromData = lab.getAttribute("data-slot-label");
+        if (fromData) return fromData.trim();
+        var inner = lab.querySelector(".slot-inner");
+        return inner ? inner.textContent.replace(/\s+/g, " ").trim() : null;
+      }
+
+      function confirmSchedule() {
+        var label = selectedSlotLabel();
+        if (!label) {
+          if (elSlotError) elSlotError.textContent = "Vui lòng chọn một khung giờ.";
+          return;
+        }
+        if (elSlotError) elSlotError.textContent = "";
+        scheduled = true;
+        elSuccess.textContent = "Đã đặt lịch: " + label + ". Chủ nhà sẽ nhận thông báo (mô phỏng).";
+        elStepPick.classList.add("hidden");
+        elStepDone.classList.remove("hidden");
+        elBtnStartInline.classList.remove("hidden");
+        elBtnStartInline.disabled = false;
+      }
+
+      function startCallMock() {
+        var L = getListing(currentId);
+        closeModal();
+        elViewCall.classList.remove("hidden");
+        elCallStatus.textContent = "Đang kết nối…";
+        elCallRoom.textContent = L ? L.title : "";
+        elHostInitial.textContent = L ? L.hostInitial : "C";
+        setTimeout(function () {
+          elCallStatus.textContent = "Đang trong cuộc gọi (mô phỏng)";
+        }, 900);
+      }
+
+      function endCall() {
+        elViewCall.classList.add("hidden");
+        elCallStatus.textContent = "Đang kết nối…";
+      }
+
+      elBtnBack.addEventListener("click", backToList);
+      if (elBtnMockPhone) {
+        elBtnMockPhone.addEventListener("click", function () {
+          if (elAsideHint) {
+            elAsideHint.textContent =
+              "Liên hệ chủ nhà: mô phỏng — mockup không hiển thị số điện thoại thật.";
+          }
+        });
+      }
+      if (elBtnMockVisit) {
+        elBtnMockVisit.addEventListener("click", function () {
+          if (elAsideHint) {
+            elAsideHint.textContent =
+              "Đặt lịch xem tận nơi: mô phỏng — hãy dùng nút Gọi Video để xác minh phòng từ xa.";
+          }
+        });
+      }
+      elBtnSchedule.addEventListener("click", openModal);
+      elBtnCloseModal.addEventListener("click", closeModal);
+      elBtnCloseAfter.addEventListener("click", closeModal);
+      elBtnConfirm.addEventListener("click", confirmSchedule);
+      elBtnModalStart.addEventListener("click", startCallMock);
+      elBtnStartInline.addEventListener("click", startCallMock);
+      elBtnEndCall.addEventListener("click", endCall);
+
+      elStepPick.addEventListener("change", function () {
+        if (elSlotError) elSlotError.textContent = "";
+      });
+
+      elModal.addEventListener("click", function (e) {
+        if (e.target === elModal) closeModal();
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          if (!elViewCall.classList.contains("hidden")) endCall();
+          else if (!elModal.classList.contains("hidden")) closeModal();
+        }
+      });
+
+      updatePriceTrack();
+      renderList();
+    })();
+  </script>
+</body>
+</html>
